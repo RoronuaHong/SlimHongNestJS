@@ -1,4 +1,9 @@
-import { Module } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
@@ -8,6 +13,10 @@ import { ArticleController } from './article/article.controller';
 import { ArticleService } from './article/article.service';
 import { UploadController } from './upload/upload.controller';
 import { MultiuploadController } from './multiupload/multiupload.controller';
+import { ProductController } from './product/product.controller';
+import { InitMiddleware } from './middleware/init.middleware';
+import { Logger } from './middleware/logger.middleware';
+import { NewsController } from './news/news.controller';
 
 @Module({
   // imports: [
@@ -23,8 +32,23 @@ import { MultiuploadController } from './multiupload/multiupload.controller';
   //   }),
   //   TodolistModule,
   // ],
-  controllers: [AppController, TodolistController, ArticleController, UploadController, MultiuploadController],
+  controllers: [
+    AppController,
+    TodolistController,
+    ArticleController,
+    UploadController,
+    MultiuploadController,
+    ProductController,
+    NewsController,
+  ],
   providers: [AppService, ArticleService],
 })
-
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(InitMiddleware, Logger).forRoutes('*');
+    // .forRoutes({
+    //   path: 'cats',
+    //   method: RequestMethod.ALL
+    // })
+  }
+}

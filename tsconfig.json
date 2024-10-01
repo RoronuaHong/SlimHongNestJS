@@ -9,7 +9,10 @@
     "target": "ES2021",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./",
+    "baseUrl": "./src", // 修改为 ./src
+    "paths": {
+      "@app/*": ["*"] // 确保它指向 src 下的文件
+    },
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
