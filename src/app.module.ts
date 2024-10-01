@@ -6,6 +6,8 @@ import { TodolistModule } from './todolist/todolist.module';
 import { TodolistController } from './todolist/todolist.controller';
 import { ArticleController } from './article/article.controller';
 import { ArticleService } from './article/article.service';
+import { UploadController } from './upload/upload.controller';
+import { MultiuploadController } from './multiupload/multiupload.controller';
 
 @Module({
   // imports: [
@@ -21,7 +23,7 @@ import { ArticleService } from './article/article.service';
   //   }),
   //   TodolistModule,
   // ],
-  controllers: [AppController, TodolistController, ArticleController],
+  controllers: [AppController, TodolistController, ArticleController, UploadController, MultiuploadController],
   providers: [AppService, ArticleService],
 })
 
