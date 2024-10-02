@@ -18,7 +18,7 @@ export class AppController {
     return this.appService.getTest();
   }
 
-  @Get('user')
+  @Get('users')
   userIndex(@Request() req): string {
     console.log(req.session.username);
 

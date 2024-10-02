@@ -17,6 +17,11 @@ import { ProductController } from './product/product.controller';
 import { InitMiddleware } from './middleware/init.middleware';
 import { Logger } from './middleware/logger.middleware';
 import { NewsController } from './news/news.controller';
+import { UserController } from './user/user.controller';
+import { AdminModule } from './module/admin/admin.module';
+import { ApiModule } from './module/api/api.module';
+import { DefaultModule } from './module/default/default.module';
+import { ShareModule } from './module/share/share.module';
 
 @Module({
   // imports: [
@@ -40,8 +45,10 @@ import { NewsController } from './news/news.controller';
     MultiuploadController,
     ProductController,
     NewsController,
+    UserController,
   ],
   providers: [AppService, ArticleService],
+  imports: [AdminModule, ApiModule, DefaultModule, ShareModule],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
